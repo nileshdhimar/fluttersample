@@ -40,6 +40,8 @@ class ScanbarKoder extends StatefulWidget {
 class _ScanbarKoderState extends State<ScanbarKoder> {
   static List<String> brCodeList = [];
   static List<String> newbrCodeList = [];
+  static const Color txtBoxBdr = Color(0xFF000000); // Example color value
+  static const Color buttonIcon = Color(0xFF000000); // Example color value
 
   // final _model = _ScanSerialNumberState();
   final TextEditingController serialNumberController = TextEditingController();
@@ -239,17 +241,6 @@ class _ScanbarKoderState extends State<ScanbarKoder> {
                                                 BarcodeScannerScreen(),
                                           ),
                                         );
-
-                                        /*     Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => BarkoderView(
-                                                licenseKey:
-                                                    'PEmBIohr9EZXgCkySoetbwP4gvOfMcGzgxKPL2X6uqPDhKvwspOK7mou0RLyZm20zu9rcxCQX26sKKFzJSF7BSr12fgPVTNv8dFg1nrNE5_08236uYDrkkfEWI6AAVPZKfjxGXzwaQg6PXiGNPwo3DhF0NZYJSbYIFp6NqgsQlE3By-Q7BOCyHYRgWU0o_yMuUf387nNZonExibwIFFHnR-Patp3mA6hxZFZUaByEwArJndbBzwEKAqNIMdkDAglu69bRa_yq_cvOa90yDLDWzGCb2HZYwTSxVMQ58cZo93FxzyUtnPgozk30Q9L7dMI',
-                                                onBarkoderViewCreated:
-                                                    _onBarkoderViewCreated),
-                                          ),
-                                        );*/
                                       } else {}
                                     },
                                     child: Container(
@@ -397,12 +388,6 @@ class _ScanbarKoderState extends State<ScanbarKoder> {
                           );
                         },
                       ),
-
-                      //  ========
-
-                      //submit button
-
-                      //   =========
                     ],
                   ),
                 ),
@@ -469,29 +454,20 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
       if (result != null) {
         _resultValue = result.textualData;
 
-        //  _ScanbarKoderState.handleScannedCode(_resultValue);
-
         if (!_ScanbarKoderState.brCodeList.contains(_resultValue!)) {
           if (_resultValue != "-1" && _resultValue != "") {
             _ScanbarKoderState.brCodeList.add(_resultValue);
             scan_count = _ScanbarKoderState.brCodeList.length;
-            //  showToast( "Barcode scanned: ${_ScanbarKoderState.brCodeList.length}");
-            //_scanPressed();
           }
-        } else {
-          // _barkoder.stopScanning();
-        }
+        } else {}
       } else {
         _resultValue = '';
       }
     });
   }
 
-  // Callback function to get a reference to the BarkoderViewController
   void _scanPressed() {
     if (_isScanningActive) {
-      // _updateState(null, !_isScanningActive);
-
       _barkoder.stopScanning();
     } else {
       _barkoder.startScanning((result) {
@@ -502,7 +478,6 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
     _updateState(null, !_isScanningActive);
   }
 
-  //show toast for scan count
   void showToast(String message) {
     Fluttertoast.showToast(
       msg: message,
@@ -524,13 +499,11 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
           context,
           MaterialPageRoute(builder: (context) => ScanbarKoder()),
         );
-        //  Navigator.pop(context, true);
       } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ScanbarKoder()),
         );
-        //  Navigator.pop(context, true);
       }
     });
   }
@@ -569,11 +542,6 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
 
               new Positioned(
                 top: 30.0,
-                //left: 20.0,
-                // right: 20.0,
-
-                //-----start row
-
                 child: new Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width,
@@ -624,11 +592,7 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
                           ),
                         ),
                         new InkWell(
-                          onTap: () {
-                            //  onSubmit();
-
-                            // Navigator.pop(context, true);
-                          },
+                          onTap: () {},
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
@@ -680,11 +644,6 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // BarkoderView widget integrated into the UI
-
-// BarkoderView widget integrated into the UI
-                    // BarkoderView widget integrated into the UI
-
                     Container(
                       width: 500,
                       height: MediaQuery.of(context).size.height,
@@ -712,19 +671,12 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
               ),
 
               new Positioned(
-                //top: 20.0,
-                //left: 20.0,
-                // right: 20.0,
-
-                //-----start row
                 child: new Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: new Container(
                     margin: const EdgeInsets.fromLTRB(15, 20, 15, 30),
                     height: 50,
                     width: MediaQuery.of(context).size.width,
-
-                    //decoration: new BoxDecoration(color: Colors.lightBlueAccent),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -813,93 +765,6 @@ class _BarcodeScannerScreenState extends State<BarcodeScannerScreen> {
                   ),
                 ),
               )
-              //------end coding-------------
-              //------
-              /*new Positioned(
-                top: 20.0,
-                //left: 20.0,
-                // right: 20.0,
-
-                //-----start row
-
-                child: new Container(
-                  decoration: new BoxDecoration(color: Colors.lightBlueAccent),
-                  child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        new InkWell(
-                          onTap: () {
-                            onCancel();
-
-                            //   Navigator.pop(context, true);
-                          },
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.none),
-                          ),
-                        ),
-                        new InkWell(
-                          onTap: () {
-                            onSubmit();
-
-                            // Navigator.pop(context, true);
-                          },
-                          child: Text(
-                            'Submit',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.none),
-                          ),
-                        ),
-                      ]),
-                ),
-              ),*/
-
-              //**********
-              //........................
-              /*new Positioned(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // BarkoderView widget integrated into the UI
-
-// BarkoderView widget integrated into the UI
-                    // BarkoderView widget integrated into the UI
-
-                    Container(
-                      width: 500,
-                      height: 200,
-                      child: InputDecorator(
-                        decoration: InputDecoration(
-                            labelText: 'Box',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
-                        child: BarkoderView(
-                            licenseKey:
-                                'PEmBIohr9EZXgCkySoetbwP4gvOfMcGzgxKPL2X6uqPDhKvwspOK7mou0RLyZm20zu9rcxCQX26sKKFzJSF7BSr12fgPVTNv8dFg1nrNE5_08236uYDrkkfEWI6AAVPZKfjxGXzwaQg6PXiGNPwo3DhF0NZYJSbYIFp6NqgsQlE3By-Q7BOCyHYRgWU0o_yMuUf387nNZonExibwIFFHnR-Patp3mA6hxZFZUaByEwArJndbBzwEKAqNIMdkDAglu69bRa_yq_cvOa90yDLDWzGCb2HZYwTSxVMQ58cZo93FxzyUtnPgozk30Q9L7dMI',
-                            onBarkoderViewCreated: _onBarkoderViewCreated),
-                      ),
-                    ),
-
-                   
-
-                    SizedBox(height: 20),
-
-                    ElevatedButton(
-                      onPressed: _scanPressed,
-                      child: Text('Start Scanning'),
-                    ),
-                  ],
-                ),
-              )*/
             ],
           ),
         ),
