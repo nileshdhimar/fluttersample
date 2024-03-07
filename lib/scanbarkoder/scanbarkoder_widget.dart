@@ -62,7 +62,7 @@ class _ScanbarkoderWidgetState extends State<ScanbarkoderWidget> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
-                child: custom_widgets.NewCustomWidget(
+                child: custom_widgets.ScanbarKoder(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: MediaQuery.sizeOf(context).height * 1.0,
                 ),
